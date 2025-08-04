@@ -1,30 +1,35 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/store/store'
-import { useAppDispatch } from '@/store/hooks'
-import { increment, decrement } from '@/store/features/counterSlice'
+// pages/counter-app.tsx
 
-export default function CounterApp() {
-  const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useAppDispatch()
+import React from "react";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../hooks";
+import { RootState } from "../store";
+import { increment, decrement } from "../features/counter/counterSlice";
+
+const CounterApp: React.FC = () => {
+  const count = useSelector((state: RootState) => state.counter.value);
+  const dispatch: AppDispatch = useAppDispatch();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 p-4 border rounded-lg shadow">
-      <h2 className="text-2xl font-bold">Redux Count: {count}</h2>
-      <div className="flex gap-4">
+    <div className="min-h-screen flex flex-col justify-center items-center">
+      <h1 className="text-3xl font-bold mb-4">Counter App</h1>
+      <p className="text-xl mb-4">Count: {count}</p>
+      <div className="space-x-4">
         <button
           onClick={() => dispatch(decrement())}
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          className="px-4 py-2 bg-red-500 text-white rounded"
         >
           Decrement
         </button>
         <button
           onClick={() => dispatch(increment())}
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          className="px-4 py-2 bg-green-500 text-white rounded"
         >
           Increment
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default CounterApp;
