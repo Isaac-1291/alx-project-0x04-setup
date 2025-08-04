@@ -33,3 +33,18 @@ export const useCount = () => {
 
   return context
 }
+import { createContext } from 'react';
+
+interface CountContextProps {
+  count: number;
+  increment: () => void;
+  decrement: () => void;
+}
+
+const CountContext = createContext<CountContextProps>({
+  count: 0,
+  increment: () => {},
+  decrement: () => {},
+});
+
+export default CountContext;
